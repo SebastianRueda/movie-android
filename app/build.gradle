@@ -64,4 +64,15 @@ dependencies {
 
     // Hilt
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
+    // Coil
+    implementation 'io.coil-kt:coil:1.4.0'
+
+    // Ktor
+    def ktor_version = '1.6.7'
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-client-android:$ktor_version"
+    implementation "io.ktor:ktor-client-logging:$ktor_version"
+    implementation "io.ktor:ktor-client-serialization:$ktor_version"
+    implementation 'ch.qos.logback:logback-classic:1.2.6'
 }

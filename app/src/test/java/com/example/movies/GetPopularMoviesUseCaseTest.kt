@@ -10,13 +10,11 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Test
 
-import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.kotlin.*
 
 @ExperimentalCoroutinesApi
 class GetPopularMoviesUseCaseTest {
-    @Mock
     private val moviesRepository = Mockito.mock(MoviesRepository::class.java)
     private val getPopularMoviesUseCase = GetPopularMoviesUseCase(moviesRepository)
 

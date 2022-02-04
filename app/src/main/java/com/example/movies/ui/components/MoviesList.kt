@@ -13,13 +13,13 @@ import com.example.movies.ui.theme.Dimens
 
 @Composable
 @ExperimentalFoundationApi
-fun MoviesList(movies: List<Movie> = emptyList(), modifier: Modifier = Modifier) {
+fun MoviesList(onClickMovie: (Movie) -> Unit, movies: List<Movie> = emptyList(), modifier: Modifier = Modifier) {
     LazyVerticalGrid(
         cells = GridCells.Adaptive(minSize = 160.dp),
         modifier = modifier.padding(Dimens.spacing_small),
     ) {
         items(movies) { movie ->
-            MovieItem(movie = movie)
+            MovieItem(movie = movie, onClickMovie)
         }
     }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Movies</string>
+    <string name="home_screen_title">Popular Movies</string>
 </resources>

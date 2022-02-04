@@ -2,6 +2,7 @@ package com.example.movies.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -23,10 +24,11 @@ import com.example.movies.data.entities.Movie
 import com.example.movies.ui.theme.Dimens
 
 @Composable
-fun MovieItem(movie: Movie, modifier: Modifier = Modifier) {
+fun MovieItem(movie: Movie, onClickMovie: (Movie) -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
-            .padding(Dimens.spacing_small),
+            .padding(Dimens.spacing_small)
+            .clickable { onClickMovie(movie) },
         shape = RoundedCornerShape(4.dp),
         elevation = 4.dp
     ) {
@@ -69,5 +71,5 @@ fun MovieItem(movie: Movie, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun Preview() {
-    MovieItem(movie = Movie(1, "test", "test"))
+    MovieItem(movie = Movie(1, "test", "test"), {})
 }

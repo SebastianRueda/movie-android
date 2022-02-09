@@ -1,4 +1,4 @@
-package com.example.movies.ui.screens.home
+package com.example.movies.ui.screens.popularmovies
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -9,12 +9,13 @@ import com.example.movies.data.entities.Movie
 import com.example.movies.data.usecases.GetPopularMoviesUseCase
 import com.example.movies.data.util.DataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class PopularMovieViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase
 ) : ViewModel() {
     sealed class UIModel {
@@ -26,7 +27,11 @@ class HomeViewModel @Inject constructor(
     var uiModelState by mutableStateOf<UIModel>(UIModel.Loading)
         private set
 
-    fun getPopularMovies() {
+    init {
+        getPopularMovies()
+    }
+
+    private fun getPopularMovies() {
         getPopularMoviesUseCase().onEach { dataStatus ->
             uiModelState = when (dataStatus) {
                 is DataStatus.Error -> UIModel.Error

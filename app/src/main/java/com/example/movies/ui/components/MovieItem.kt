@@ -24,11 +24,11 @@ import com.example.movies.data.entities.Movie
 import com.example.movies.ui.theme.Dimens
 
 @Composable
-fun MovieItem(movie: Movie, onClickMovie: (Movie) -> Unit, modifier: Modifier = Modifier) {
+fun MovieItem(movie: Movie, onClickMovie: (Int) -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .padding(Dimens.spacing_small)
-            .clickable { onClickMovie(movie) },
+            .clickable { onClickMovie(movie.id) },
         shape = RoundedCornerShape(4.dp),
         elevation = 4.dp
     ) {

@@ -1,4 +1,4 @@
-package com.example.movies.ui.screens.home
+package com.example.movies.ui.screens.popularmovies
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -12,7 +12,7 @@ import com.example.movies.ui.components.MoviesList
 
 @ExperimentalFoundationApi
 @Composable
-fun HomeContent(movies: List<Movie> = emptyList(), onClickMovie: (Movie) -> Unit) {
+fun PopularMoviesContent(movies: List<Movie> = emptyList(), onClickMovie: (Int) -> Unit) {
     Column() {
         TopAppBar(
             title = {

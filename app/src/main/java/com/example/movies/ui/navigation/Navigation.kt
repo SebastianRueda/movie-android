@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.movies.ui.screens.popularmovies.PopularMovies
-import com.example.movies.ui.screens.moviedetail.MovieDetail
+import com.example.movies.ui.screens.moviedetail.MovieDetailScreen
 
 @Composable
 @ExperimentalFoundationApi
@@ -22,7 +22,7 @@ fun Navigation() {
 
         composable(NavRoute.MOVIE_DETAIL.value + "/{movie_id}") { backStackEntry ->
             val id = backStackEntry.arguments?.getString("movie_id") ?: "-1"
-            MovieDetail(id = id)
+            MovieDetailScreen(id = id.toInt(), onClickBack = { navController.popBackStack() })
         }
     }
 }

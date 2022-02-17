@@ -4,6 +4,8 @@ import com.example.movies.data.entities.Movie
 import com.example.movies.data.entities.MovieDetail
 import com.example.movies.data.remotedatasource.RemoteDataSource
 import com.example.movies.data.remotedatasource.themoviedb.mapper.mapMovie
+import com.example.movies.data.remotedatasource.themoviedb.mapper.mapMovieDetail
+import com.example.movies.data.remotedatasource.themoviedb.response.MovieDetailResponse
 import com.example.movies.data.remotedatasource.themoviedb.response.MoviesResponse
 import io.ktor.client.*
 import io.ktor.client.request.*
@@ -32,5 +34,5 @@ class TheMovieDBDataSource(
     override suspend fun getPopularMovies(): List<Movie> =
         httpClient.get<MoviesResponse>("movie/popular").results.map { it.mapMovie() }
 
-    override suspend fun getMovieDetail(id: Int): MovieDetail = httpClient.get("movie/$id")
+    override suspend fun getMovieDetail(id: Int): MovieDetail = httpClient.get<MovieDetailResponse>("movie/$id").mapMovieDetail()
 }

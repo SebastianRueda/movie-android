@@ -33,15 +33,9 @@ fun MovieItem(movie: Movie, onClickMovie: (Int) -> Unit, modifier: Modifier = Mo
         elevation = 4.dp
     ) {
         Column() {
-            Image(
-                painter = rememberImagePainter(
-                    data = movie.image,
-                    builder = {
-                        crossfade(true)
-                    }
-                ),
+            ImageCoil(
+                url = movie.image,
                 contentDescription = movie.title,
-                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(240.dp)

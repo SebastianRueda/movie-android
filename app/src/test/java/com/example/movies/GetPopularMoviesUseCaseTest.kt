@@ -1,17 +1,11 @@
 package com.example.movies
 
 import com.example.movies.data.entities.Movie
-import com.example.movies.data.entities.MovieDetail
 import com.example.movies.data.repositories.MoviesRepository
 import com.example.movies.data.usecases.GetPopularMoviesUseCase
 import com.example.movies.data.util.DataStatus
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Test
@@ -32,14 +26,7 @@ class GetPopularMoviesUseCaseTest {
         }
 
         whenever(moviesRepository.getPopularMovies())
-            .doReturn(
-                mutableListOf<DataStatus<List<Movie>>>()
-                    .apply {
-                        add(DataStatus.Loading())
-                        add(DataStatus.Success(movies))
-                    }
-                    .asFlow()
-            )
+            .thenReturn(movies)
 
         // when invoke
         val (loading, success) = getPopularMoviesUseCase().toList()
@@ -52,12 +39,7 @@ class GetPopularMoviesUseCaseTest {
 
     @Test
     fun `when call getPopularMovies() fail`() = runTest {
-        whenever(moviesRepository.getPopularMovies()).doReturn(
-            flow<DataStatus<List<Movie>>> {
-                emit(DataStatus.Loading())
-                emit(DataStatus.Error("Error"))
-            }
-        )
+        whenever(moviesRepository.getPopularMovies()).then { throw Exception("Error") }
 
         // when invoke
         val (loading, error) = getPopularMoviesUseCase().toList()

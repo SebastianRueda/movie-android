@@ -8,11 +8,13 @@ import androidx.navigation.compose.rememberNavController
 import com.example.movies.ui.screens.popularmovies.PopularMovies
 import com.example.movies.ui.screens.moviedetail.MovieDetailScreen
 
+@Suppress("SpellCheckingInspection")
 @Composable
 @ExperimentalFoundationApi
 fun Navigation() {
     val navController = rememberNavController()
 
+    // TODO refactorizar el manejo del navigator y las constantes
     NavHost(navController = navController, startDestination = NavRoute.POPULAR_MOVIE.value) {
         composable(NavRoute.POPULAR_MOVIE.value) {
             PopularMovies({ movieId ->

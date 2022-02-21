@@ -6,6 +6,6 @@ import com.example.movies.data.util.DataStatus
 import kotlinx.coroutines.flow.Flow
 
 interface MoviesRepository {
-    fun getPopularMovies(): Flow<DataStatus<List<Movie>>>
-    fun getMovieDetail(id: Int): Flow<DataStatus<MovieDetail>>
+    suspend fun getPopularMovies(): List<Movie>
+    suspend fun getMovieDetail(id: Int): MovieDetail
 }
